@@ -23,13 +23,13 @@ const Reviews = ({id, prevRating, userRated}) => {
             if(useAppstate.login) {
             await addDoc(reviewsRef, {
                 movieid: id,
-                name: useAppstate.userName,
+                name: useAppstate.username,
                 rating: rating,
-                thought: form,
+                thoughts: form,
                 timestamp: new Date().getTime()
             })
 
-            const ref = doc(db, "movies", id);
+            const ref = doc(db, "Movies", id);
             await updateDoc(ref, {
                 rating: prevRating + rating,
                 rated: userRated + 1
@@ -45,7 +45,7 @@ const Reviews = ({id, prevRating, userRated}) => {
                 timer: 3000
               })
             } else {
-                navigate('/login')
+                navigate('/loginn')
             }
         } catch (error) {
             swal({
@@ -110,7 +110,7 @@ const Reviews = ({id, prevRating, userRated}) => {
                             edit={false}
                         />
 
-                        <p>{e.thought}</p>
+                        <p>{e.thoughts}</p>
                     </div>     
                 )
             })}
